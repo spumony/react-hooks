@@ -18,6 +18,7 @@ export const GithubState = ({children}) => {
     loading: false,
     repo: []
   }
+
   const [state, dispatch] = useReducer(githubReducer, initialState)
 
   const search = async value => {
@@ -37,7 +38,7 @@ export const GithubState = ({children}) => {
     setLoading()
 
     const response = await axios.get(
-      withCreds(`https://api.github.com/search/users/${name}?`)
+      withCreds(`https://api.github.com/users/${name}?`)
     )
 
     dispatch({
@@ -50,7 +51,7 @@ export const GithubState = ({children}) => {
     setLoading()
 
     const response = await axios.get(
-      withCreds(`https://api.github.com/users/${name}/repo?per_page=5&`)
+      withCreds(`https://api.github.com/users/${name}/repos?per_page=5&`)
     )
 
     dispatch({
